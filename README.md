@@ -89,3 +89,4 @@
 
 # Considerações
 - Decidi não colocar na tabela parking o atributo left, pois coloquei o exitDate, que era necessário para calculo do tempo de estacionamento, e com isso, caso o exitDate seja null significa que o veiculo ainda não saiu do estacionamento.
+- No endpoint de out, caso o usuário passe um email no body da requisição, será enviado um comprovante para o email informado.
