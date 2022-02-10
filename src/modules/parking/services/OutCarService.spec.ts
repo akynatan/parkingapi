@@ -1,6 +1,7 @@
 import { ObjectID } from 'typeorm';
 import { ObjectId } from 'mongodb';
 
+import FakeMailProvider from '@shared/container/providers/MailProvider/fakes/FakeMailProvider';
 import AppError from '@shared/errors/AppError';
 import FakeCacheProvider from '@shared/container/providers/CacheProvider/fakes/FakeCacheProvider';
 import FakeParkingRepository from '../repositories/fakes/FakeParkingRepository';
@@ -13,6 +14,7 @@ let fakeParkingRepository: FakeParkingRepository;
 let createParkingService: CreateParkingService;
 let payParkingService: PayParkingService;
 let outCarService: OutCarService;
+let fakeMailProvider: FakeMailProvider;
 const objectId = (new ObjectId() as any) as ObjectID;
 
 describe('OutCarService', () => {
@@ -27,7 +29,12 @@ describe('OutCarService', () => {
       fakeParkingRepository,
       fakeCacheProvider,
     );
-    outCarService = new OutCarService(fakeParkingRepository, fakeCacheProvider);
+    fakeMailProvider = new FakeMailProvider();
+    outCarService = new OutCarService(
+      fakeParkingRepository,
+      fakeCacheProvider,
+      fakeMailProvider,
+    );
   });
 
   it('should be able to out parking', async () => {

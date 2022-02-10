@@ -11,7 +11,7 @@ import IParkingRepository from '../repositories/IParkingRepository';
 
 interface IRequest {
   id: ObjectID;
-  email: string | undefined;
+  email?: string | undefined;
 }
 
 @injectable()
@@ -59,7 +59,7 @@ export default class OutCarService {
         new Date(parking.createdAt),
       )} minutes`;
 
-      await this.mailProvider.sendEmail({
+      this.mailProvider.sendEmail({
         to: {
           name: 'email',
           email,

@@ -31,6 +31,10 @@
 
 - Foi criada uma documentação da API. A mesma pode ser acessada em localhost:3333/api-docs
 
+# Testes
+
+- Para executar os testes rodar o seguinte comando na pasta raiz do projeto: yarn test
+
 
 # Requisitos Funcionais / Requisitos Não Funcionais / Regras de Negócio
 ## Recuperação de senha
@@ -78,6 +82,6 @@
 **Regras de Negócio**
 
 - O usuário não pode estacionar um veiculo que já está estacionado
-- O usuário não pode pagar um veiculo mais de 1 vez
-- O usuário não pode dar saida em um veiculo mais de 1 vez
+- O usuário não pode pagar um veiculo que já está pago
+- O usuário não pode dar saida em um veiculo que já saiu do estacionamento
 - O usuário não pode dar saida em um veiculo que ainda não efetuou o pagamento
