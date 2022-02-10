@@ -10,8 +10,9 @@
     obs2: ja deixei o .env.example configurado com os dados necessários
   4) configurar o .ormconfig.json conforme .ormconfig.example.json
     obs3: ja deixei o .env.example configurado com os dados necessários
-  5) executar na pasta raiz do projeto para instalarr as dependencias: yarn
+  5) executar na pasta raiz do projeto para instalar as dependencias: yarn
   6) executar na pasta raiz do projeto para executar o projeto: yarn dev:server
+  7) as rotas que precisam de autenticação deve enviar no Authorization um token Bearer (esse token é retornado no endpoint post /sessions)
 
 # Principais Tecnologias
 
@@ -67,7 +68,6 @@
 - O usuário não pode alterar seu email para um email já utilizado;
 - Para atualizar sua senha, o usuário deve informar a senha antiga;
 - Para atualizar sua senha, o usuário precisa confirmar a nova senha;
-
 
 ## Parking
 
