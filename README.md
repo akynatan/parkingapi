@@ -31,6 +31,7 @@
 # Documentação
 
 - Foi criada uma documentação da API. A mesma pode ser acessada em localhost:3333/api-docs
+- Na pasta raiz do projeto, contém um arquivo com nome parking-insomnia.json que serve para importação de todas as rotas no Insomnia.
 
 # Testes
 
