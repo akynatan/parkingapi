@@ -85,3 +85,7 @@
 - O usuário não pode pagar um veiculo que já está pago
 - O usuário não pode dar saida em um veiculo que já saiu do estacionamento
 - O usuário não pode dar saida em um veiculo que ainda não efetuou o pagamento
+
+
+# Considerações
+- Decidi não colocar na tabela parking o atributo left, pois coloquei o exitDate, que era necessário para calculo do tempo de estacionamento, e com isso, caso o exitDate seja null significa que o veiculo ainda não saiu do estacionamento.
