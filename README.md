@@ -1,3 +1,37 @@
+# Como executar o projeto
+- Clonar o projeto em sua máquina
+- Na pasta raiz do projeto executar 'docker-compose up'
+- Caso não queira executar o projeto com docker-compose:
+  1) executar: docker run --name redis -p 6379:6379 -d -t redis:alpine
+  2) executar: sudo docker run --name mongodb -p 27017:27017 -d -t mongo
+  3) configurar o .env conforme .env.example
+    obs1: não precisa configurar as chaves de AWS, elas foram criadas somente para
+      simular como funcionaria a configuração do envio de email pelo S3
+    obs2: ja deixei o .env.example configurado com os dados necessários
+  4) configurar o .ormconfig.json conforme .ormconfig.example.json
+    obs3: ja deixei o .env.example configurado com os dados necessários
+  5) executar na pasta raiz do projeto para instalarr as dependencias: yarn
+  6) executar na pasta raiz do projeto para executar o projeto: yarn dev:server
+
+# Principais Tecnologias
+
+- Express: rotas
+- Mongo: banco de dados
+- TypeORM: manipulação do banco de dados
+- Redis: cacheamento - foi utilizado para gerar cache na rota de historico de uma placa
+- DateFns: manipulação de datas
+- Celebrate: validação de parametros dos enpoints
+- Bcryptjs: criptografia
+- Rate-limiter-flexible: prevenção de ataques DDOS
+- swagger-ui-express: documentação da API
+- tsyringe: injeção de dependencias
+- ethereal: simulação de envio de email local (nas rotas que possuem envio de email, ele imprime uma url no console como se fosse um email)
+
+# Documentação
+
+- Foi criada uma documentação da API. A mesma pode ser acessada em localhost:3333/api-docs
+
+
 # Requisitos Funcionais / Requisitos Não Funcionais / Regras de Negócio
 ## Recuperação de senha
 
@@ -47,36 +81,3 @@
 - O usuário não pode pagar um veiculo mais de 1 vez
 - O usuário não pode dar saida em um veiculo mais de 1 vez
 - O usuário não pode dar saida em um veiculo que ainda não efetuou o pagamento
-
-# Como rodar o projeto
-- Clonar o projeto em sua máquina
-- Na pasta raiz do projeto executar 'docker-compose up'
-- Caso não queira executar o projeto com docker-compose:
-  1) executar: docker run --name redis -p 6379:6379 -d -t redis:alpine
-  2) executar: sudo docker run --name mongodb -p 27017:27017 -d -t mongo
-  3) configurar o .env conforme .env.example
-    obs1: não precisa configurar as chaves de AWS, elas foram criadas somente para
-      simular como funcionaria a configuração do envio de email pelo S3
-    obs2: ja deixei o .env.example configurado com os dados necessários
-  4) configurar o .ormconfig.json conforme .ormconfig.example.json
-    obs3: ja deixei o .env.example configurado com os dados necessários
-  5) executar na pasta raiz do projeto para instalarr as dependencias: yarn
-  6) executar na pasta raiz do projeto para executar o projeto: yarn dev:server
-
-# Principais Tecnologias
-
-- Express: rotas
-- Mongo: banco de dados
-- TypeORM: manipulação do banco de dados
-- Redis: cacheamento - foi utilizado para gerar cache na rota de historico de uma placa
-- DateFns: manipulação de datas
-- Celebrate: validação de parametros dos enpoints
-- Bcryptjs: criptografia
-- Rate-limiter-flexible: prevenção de ataques DDOS
-- swagger-ui-express: documentação da API
-- tsyringe: injeção de dependencias
-- ethereal: simulação de envio de email local (nas rotas que possuem envio de email, ele imprime uma url no console como se fosse um email)
-
-# Documentação
-
-- Foi criada uma documentação da API. A mesma pode ser acessada em localhost:3333/api-docs
