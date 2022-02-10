@@ -1,0 +1,603 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Parking API Documentation",
+    "description": "This is an API Parking",
+    "version": "1.0.0",
+    "contact": {
+      "email": "akynatan@outlook.com"
+
+    }
+  },
+  "tags": [
+    {"name": "Users", "description": "Endpointer for Users"},
+    {"name": "Profile", "description": "Endpointer for Profile"},
+    {"name": "Session", "description": "Endpointer for Session"},
+    {"name": "Password", "description": "Endpointer for Password"},
+    {"name": "Parking", "description": "Endpointer for Parking"}
+  ],
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "JWT Authorization header using the bearer scheme"
+      }
+    }
+  },
+  "paths": {
+    "/users": {
+      "post": {
+        "tags": ["Users"],
+        "summary": "Create a User",
+        "description": "Create a new User",
+        "responses": {
+          "200": {
+            "description": "Return user Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["name", "email", "password"],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Aky Natan",
+                  "email": "akynatan@outlook.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/profile": {
+      "get": {
+        "tags": ["Profile"],
+        "summary": "Get a Profile",
+        "description": "Return profile of user authenticated",
+        "responses": {
+          "200": {
+            "description": "Return profile of user authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ]
+      },
+      "put": {
+        "tags": ["Profile"],
+        "summary": "Get a Profile",
+        "description": "Update profile of user authenticated",
+        "responses": {
+          "200": {
+            "description": "Update profile of user authenticated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["name", "email", "password", "password_confirmation", "old_password"],
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "password_confirmation": {
+                    "type": "string"
+                  },
+                  "old_password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "Aky Natan",
+                  "email": "akynatan@outlook.com",
+                  "password": "123456",
+                  "password_confirmation": "123456",
+                  "old_password": "123456"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/sessions": {
+      "post": {
+        "tags": ["Session"],
+        "summary": "Create a Session",
+        "description": "Create a new Session",
+        "responses": {
+          "200": {
+            "description": "Return user Session",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "user": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "email": {
+                          "type": "string"
+                        },
+                        "createdAt": {
+                          "type": "string"
+                        },
+                        "updatedAt": {
+                          "type": "string"
+                        },
+                        "id": {
+                          "type": "string"
+                        }
+                      }
+                    },
+                    "token": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["email", "password"],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "akynatan@outlook.com",
+                  "password": "123456"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/password/forgot": {
+      "post": {
+        "tags": ["Password"],
+        "summary": "Send email to recover password",
+        "description": "Send email to recover password",
+        "responses": {
+          "204": {
+            "description": "Return send email to recover password to user"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["email"],
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "email": "akynatan@outlook.com"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/password/reset": {
+      "post": {
+        "tags": ["Password"],
+        "summary": "Reset password of user",
+        "description": "Reset password of user",
+        "responses": {
+          "204": {
+            "description": "Return when password to user reseted"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["email"],
+                "type": "object",
+                "properties": {
+                  "token": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  },
+                  "password_confirmation": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "token": "aae0b45d-7307-4a13-9175-7fc51b812a13",
+                  "password": "987654",
+	                "password_confirmation": "987654"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parking": {
+      "post": {
+        "tags": ["Parking"],
+        "summary": "Create a Parking",
+        "description": "Create a new Parking",
+        "responses": {
+          "200": {
+            "description": "Return parking Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "paid": {
+                      "type": "boolean"
+                    },
+                    "plate": {
+                      "type": "boolean"
+                    },
+                    "exitDate": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "paid": false,
+                    "plate": "AAA-1235",
+                    "exitDate": null,
+                    "createdAt": "2022-02-09T22:25:40.939Z",
+                    "updatedAt": "2022-02-09T22:25:40.939Z",
+                    "id": "62043f641338a77bc1614783"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "required": ["name"],
+                "type": "object",
+                "properties": {
+                  "plate": {
+                    "type": "string"
+                  }
+                },
+                "example": {
+                  "name": "AAA-1235"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parking/{id}/pay": {
+      "put": {
+        "tags": ["Parking"],
+        "summary": "Payment a Parking",
+        "description": "Payment a Parking",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the parking",
+            "example": "620436e5b572246a323dc484"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return parking paied",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "paid": {
+                      "type": "boolean"
+                    },
+                    "plate": {
+                      "type": "boolean"
+                    },
+                    "exitDate": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "paid": true,
+                    "plate": "AAA-1235",
+                    "exitDate": null,
+                    "createdAt": "2022-02-09T22:25:40.939Z",
+                    "updatedAt": "2022-02-09T22:25:40.939Z",
+                    "id": "62043f641338a77bc1614783"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parking/{id}/out": {
+      "put": {
+        "tags": ["Parking"],
+        "summary": "Exit a car of Parking",
+        "description": "Exit a of Parking",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "ID of the parking",
+            "example": "620436e5b572246a323dc484"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return parking exited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "paid": {
+                      "type": "boolean"
+                    },
+                    "plate": {
+                      "type": "boolean"
+                    },
+                    "exitDate": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "example": {
+                    "paid": true,
+                    "plate": "AAA-1235",
+                    "exitDate": null,
+                    "createdAt": "2022-02-09T22:25:40.939Z",
+                    "updatedAt": "2022-02-09T22:25:40.939Z",
+                    "id": "62043f641338a77bc1614783"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/parking/{plate}": {
+      "get": {
+        "tags": ["Parking"],
+        "summary": "List historic of a car",
+        "description": "List historic of a car",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "plate",
+            "schema": {
+              "type": "string"
+            },
+            "required": true,
+            "description": "Plate of veihcle",
+            "example": "AAA-123"
+          }
+        ],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Return parking exited",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "properties": {
+                    "paid": {
+                      "type": "boolean"
+                    },
+                    "plate": {
+                      "type": "boolean"
+                    },
+                    "exitDate": {
+                      "type": "string"
+                    },
+                    "createdAt": {
+                      "type": "string"
+                    },
+                    "updatedAt": {
+                      "type": "string"
+                    },
+                    "id": {
+                      "type": "string"
+                    }
+                  },
+                  "example": [{
+                    "paid": true,
+                    "plate": "AAA-1235",
+                    "exitDate": null,
+                    "createdAt": "2022-02-09T22:25:40.939Z",
+                    "updatedAt": "2022-02-09T22:25:40.939Z",
+                    "id": "62043f641338a77bc1614783"
+                  }]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

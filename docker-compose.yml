@@ -1,0 +1,42 @@
+version: "3.7"
+
+services:
+  redisdb:
+    container_name: redisdbparking
+    image: redis:alpine
+    command: redis-server --requirepass parking --appendonly yes
+    hostname: redis
+    volumes:
+      - redisdata:/data/redis
+    network_mode: host
+
+  mongodb:
+    container_name: mongodbparking
+    image : mongo
+    volumes:
+      - mongodata:/data/mongodb
+    restart: always
+    network_mode: host
+
+  app:
+    container_name: parkingapi
+    build: .
+    volumes:
+      - .:/usr/app
+    network_mode: host
+    environment:
+      - REDIS_HOST=localhost
+      - REDIS_PORT=6379
+      - REDIS_PASS=parking
+      - APP_SECRET=768e940cca194755911ce0ca9aab0027
+      - MAIL_DRIVER=ethereal
+      - STORAGE_DRIVER=disk
+    depends_on:
+      - mongodb
+      - redisdb
+
+volumes:
+  mongodata:
+    driver: local
+  redisdata:
+    driver: local
